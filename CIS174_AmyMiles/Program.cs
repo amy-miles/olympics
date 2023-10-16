@@ -27,7 +27,7 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllerRoute(
-    name: "olympic",
+    name: "custom",
     pattern: "{controller}/{action}/division{activeDivision}/sport{activeSport}");
 
 app.MapControllerRoute(

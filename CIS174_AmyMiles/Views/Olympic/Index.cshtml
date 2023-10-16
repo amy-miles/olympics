@@ -15,8 +15,7 @@
             <a asp-controller="Olympic" 
                 asp-action="index" 
                 asp-route-activeDivision="all"
-                asp-route-activeSport="@ViewBag.ActiveSport"
-                class="list-group-item @Active("all", ViewBag.ActiveDivision)">All</a>
+                asp-route-activeSport="@ViewBag.ActiveSport"></a>
 
             @foreach (Division division in ViewBag.Divisions)
             {
@@ -33,8 +32,7 @@
             <a asp-controller="Olympic"
                asp-action="index"
                asp-route-activeSport="all"
-               asp-route-activeDivision="@ViewBag.ActiveDivision"
-               class="list-group-item @Active("all", ViewBag.ActiveSport)">All</a>
+               asp-route-activeDivision="@ViewBag.ActiveDivision"></a>
 
             @foreach (Sport sport in ViewBag.Sports)
             {
@@ -52,7 +50,7 @@
             @foreach (Country country in Model)
             {
                 <li class="list-inline-item">
-                    <img src="~/images/@country.LogoImage" alt="@country.Name" title="@country.Name |
+                    <img src="~/images/flags/@country.LogoImage" alt="@country.Name" title="@country.Name |
                     @country.Division.Name @country.Sport.Name"/>
                         
                 </li> 
