@@ -2,6 +2,9 @@
 {
     public class OlympicViewModel
     {
+        //add property to store a single country per pg 347 update
+        public Country Country { get; set; } = new Country();//update
+
         public string ActiveDivision { get; set; } = "all";
         public string ActiveSport { get; set;} = "all";
 

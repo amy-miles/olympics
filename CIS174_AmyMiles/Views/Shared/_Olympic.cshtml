@@ -1,5 +1,7 @@
 ﻿@{
     Layout = "_Layout";
+    //variable to store value of controller so view doesn't display the links and count if already on Fave pg
+    string controller = ViewContext.RouteData.Values["controller"]?.ToString() ?? "";
 }
 
 
@@ -15,6 +17,22 @@
             @if (TempData.Keys.Contains("message"))
             {
                 <h4 class="bg-success p-2">@TempData["message"]</h4>
+            }
+
+            <!--update per pg 349 to show link to Favorites page unless on Favorites page-->
+            @if (controller != "Favorites")
+            {
+                var session = new OlympicSession(Context.Session);
+                int? count = session.GetMyCountryCount();
+
+                @* if there are fave countries in session, display faves link*@
+                @if (count.HasValue)
+                {
+                    <h5 class="bg-info p-2">
+                        <a asp-controller="Favorites" asp-action="Index" class="text-white">My Favorite Countries</a>
+                        <span class="badge bg-light text-black ">@count</span>
+                    </h5>
+                }
             }
         </header>
     </div>

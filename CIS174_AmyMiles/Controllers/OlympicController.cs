@@ -8,14 +8,17 @@ namespace CIS174_AmyMiles.Controllers
     public class OlympicController : Controller
     {
         private CountryContext context;
-        public OlympicController(CountryContext ctx)
-        {
-            context = ctx;
-        }
+        public OlympicController(CountryContext ctx) => context = ctx;
+    
 
         public ViewResult Index(OlympicViewModel model)        
         {
             /**************using ViewModel****************************/
+
+            //store selected division and sport in session per update pg 347
+            var session = new OlympicSession(HttpContext.Session);
+            session.SetActiveDivision(model.ActiveDivision);
+            session.SetActiveSport(model.ActiveSport);//end update
 
             model.Divisions = context.Divisions.ToList();
             model.Sports = context.Sports.ToList();
@@ -40,15 +43,22 @@ namespace CIS174_AmyMiles.Controllers
             return RedirectToAction("Index", "Olympic");
         }
 
-       public IActionResult Details(string id)//page 323
+        public IActionResult Details(string id)//page 323
         {
-            var country = context.Countries
-                .Include(c => c.Division)
-                .Include(c => c.Sport)
-                .FirstOrDefault(c => c.CountryID == id) ?? new Country();
-            return View(country);
+            //get selected division and sport from session 
+            //and pass them to the view in the view model per update pg 347
+            var session = new OlympicSession(HttpContext.Session);
+            var model = new OlympicViewModel
+            {
+                Country = context.Countries
+                    .Include(c => c.Division)
+                    .Include(c => c.Sport)
+                    .FirstOrDefault(c => c.CountryID == id) ?? new Country(),
+                ActiveDivision = session.GetActiveDivision(),
+                ActiveSport = session.GetActiveSport()
+            };
+            return View(model);
         }
-
 
     }
 }

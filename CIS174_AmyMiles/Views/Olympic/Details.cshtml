@@ -1,7 +1,7 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@model Country
+@model OlympicViewModel 
 @{
     ViewData["Title"] = "Country Details";
 }
@@ -10,24 +10,29 @@
 
 <div class="row">
     <div class="col">
-
+        <!--updated to bind an OlympicViewModel object, which is passed from the controller per pg 351-->
+        <!--had to add .Country FYI-->
         <ul class="list-group text-center">
             <li class="list-group-item">
-                <img src="~/images/flags/@Model.LogoImage" alt="" />
-                <h3>@Model.Name</h3>
+                <img src="~/images/flags/@Model.Country.LogoImage" alt="" />
+                <h3>@Model.Country.Name</h3>
             </li>
             <li class="list-group-item">
-                <h4>Division: @Model.Division.Name</h4>
+                <h4>Division: @Model.Country.Division.Name</h4>
             </li>
             <li class="list-group-item">
-                <h4>Sport: @Model.Sport.Name</h4>
+                <h4>Sport: @Model.Country.Sport.Name</h4>
             </li>
             <li class="list-group-item">
-                <form method="post" asp-action="Add" asp-controller="Favorites">
-                    <a asp-action="Index" class="btn btn-primary">Return to Home</a>
+                <form asp-action="Add" asp-controller="Favorites" method="post">
+
+                    <a asp-action="Index" class="btn btn-primary" 
+                        asp-route-activeDivision="@Model.ActiveDivision"
+                       asp-route-activeSport="@Model.ActiveSport">Return to Home</a>
+
                     <button type="submit" class="btn btn-primary">Add to Favorites</button>
-                    <input type="hidden" asp-for="@Model.CountryID"/>
-                    <input type="hidden" asp-for="@Model.Name" />
+                    <input type="hidden" asp-for="Country.CountryID"/>                  
+
                 </form>
             </li>
         </ul>

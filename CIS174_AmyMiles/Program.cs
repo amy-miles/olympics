@@ -3,9 +3,16 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//must be called before AddControllersWithViews
+
+//must be called before AddControllersWithViews from pg 333
 builder.Services.AddMemoryCache();
-builder.Services.AddSession();
+builder.Services.AddSession(options => //can change the default options pg 333
+{ 
+    //change idle timeout to 5 mins - efault is 20 mins
+    options.IdleTimeout = TimeSpan.FromSeconds(60 * 5);
+    options.Cookie.HttpOnly = false; //default is true
+    options.Cookie.IsEssential = true; //default is false
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -28,8 +35,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-//must be called before routes are mapped
+//must be called before routes are mapped pg 333
 app.UseSession();
+
+
 
 app.UseAuthorization();
 

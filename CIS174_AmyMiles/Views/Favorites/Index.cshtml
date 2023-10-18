@@ -1,0 +1,42 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model OlympicViewModel
+@{
+    ViewData["Title"] = "Favorites";
+}
+
+<div class="text-center mb-4" >
+    <h2>My Favorties</h2>
+    <form asp-action="Delete" method="post">
+        <!--should this be the olympic controller? substituted for "home" in book?-->
+        <a asp-action="Index" asp-controller="Olympic" class="btn btn-primary"
+        asp-route-activeDivision="@Model.ActiveDivision"
+        asp-route-activeSport="@Model.ActiveSport">Bake to Home Page</a>
+
+        <button type="submit" class="btn btn-primary">Clear Favorites</button>
+    </form>
+</div>
+
+<div class="row">
+    <div class="col-8 offset-2">
+        <ul class="list-group">
+            @foreach (Country country in Model.Countries)
+            {
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img src="~/images/flags/@country.LogoImage" alt=""/>
+                        </div>
+                        <div class="col-sm-4">
+                            @country.Name
+                        </div>
+                        <div class="col-sm-4">
+                            @country.Division.Name @country.Sport.Name
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
