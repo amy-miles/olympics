@@ -54,15 +54,9 @@
                         @foreach (Country country in Model.Countries)
                         {
                             <li class="list-inline-item">
-                                <div class="card border border-3  " style="width: 18rem;">
-                                    <img class="card-img-top" src="~/images/flags/@country.LogoImage" alt="Card image cap">
-                                    <div class="card-body ">
-                                        <h5 class="card-title">@country.Name</h5>
-                                        <p class="card-text">
-                                            @country.Name | @country.Division.Name - @country.Sport.Name
-                                        </p>                            
-                                    </div>
-                                </div>                                                              
+                                
+                                 <img src="~/images/flags/@country.LogoImage" alt="@country.Name" 
+                                    title="@country.Name | @country.Division.Name @country.Sport.Name"/>                                                                                      
                             </li> 
                         }
                     </ul>
