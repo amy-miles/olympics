@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+
+<head>
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div class="container"><!--from pg 325-->
+        <header class="text-center text-white">
+            <h1 class="bg-primary mt-3 p-3">Olympic Countries</h1>
+
+            @*show any message in temp data*@
+            @if (TempData.Keys.Contains("message"))
+            {
+                <h4 class="bg-success p-2">@TempData["message"]</h4>
+            }
+        </header>
+    </div>
+</body>
+
+
+<main>@RenderBody()</main>

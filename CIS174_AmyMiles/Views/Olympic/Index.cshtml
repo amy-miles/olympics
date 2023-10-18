@@ -1,6 +1,7 @@
 ﻿@model OlympicViewModel
 
 @{
+    Layout = "_Olympic";
     ViewData["Title"] = "Olympic Games";
    
 }
@@ -54,9 +55,11 @@
                         @foreach (Country country in Model.Countries)
                         {
                             <li class="list-inline-item">
-                                
-                                 <img src="~/images/flags/@country.LogoImage" alt="@country.Name" 
-                                    title="@country.Name | @country.Division.Name @country.Sport.Name"/>                                                                                      
+                                <a asp-action="Details" asp-route-id="@country.CountryID"><!--page 323-->
+
+                                    <img src="~/images/flags/@country.LogoImage" alt="@country.Name"
+                                        title="@country.Name | @country.Division.Name @country.Sport.Name" />
+                                </a>                                                                                                                      
                             </li> 
                         }
                     </ul>

@@ -1,0 +1,36 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Country
+@{
+    ViewData["Title"] = "Country Details";
+}
+
+<h2 class="text-center p-2">Country Details</h2><!--pg 323-->
+
+<div class="row">
+    <div class="col">
+
+        <ul class="list-group text-center">
+            <li class="list-group-item">
+                <img src="~/images/flags/@Model.LogoImage" alt="" />
+                <h3>@Model.Name</h3>
+            </li>
+            <li class="list-group-item">
+                <h4>Division: @Model.Division.Name</h4>
+            </li>
+            <li class="list-group-item">
+                <h4>Sport: @Model.Sport.Name</h4>
+            </li>
+            <li class="list-group-item">
+                <form method="post" asp-action="Add" asp-controller="Favorites">
+                    <a asp-action="Index" class="btn btn-primary">Return to Home</a>
+                    <button type="submit" class="btn btn-primary">Add to Favorites</button>
+                    <input type="hidden" asp-for="@Model.CountryID"/>
+                    <input type="hidden" asp-for="@Model.Name" />
+                </form>
+            </li>
+        </ul>
+
+    </div>
+</div>
