@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CIS174_AmyMiles.Controllers
 {
-    public class Favorites : Controller
+    public class FavoritesController : Controller
     {
         public IActionResult Index()
         {
