@@ -36,10 +36,10 @@ namespace CIS174_AmyMiles.Controllers
         }
 
         [HttpPost]//added this from pg 315
-        public RedirectToActionResult Add(Country country)
+        public RedirectToActionResult Add(OlympicViewModel model)
         {
             //code that updates the server with the new team data
-            TempData["message"] = $"{country.Name} added to your favorites";
+            TempData["message"] = $"{model.Country.Name} added to your favorites";
             return RedirectToAction("Index", "Olympic");
         }
 
