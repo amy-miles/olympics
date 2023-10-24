@@ -17,8 +17,9 @@ builder.Services.AddSession(options => //can change the default options pg 333
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-//Add EF Core DI
+//Add EF Core DI 
 builder.Services.AddDbContext<CountryContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("CountryContext")));
+builder.Services.AddDbContext<TicketContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("TicketContext")));
 
 var app = builder.Build();
 
